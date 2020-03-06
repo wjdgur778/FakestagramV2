@@ -96,7 +96,9 @@ class CommentActivity : AppCompatActivity() {
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
                         var url = it.result!!["image"]
-                        Glide.with(holder.itemView.context).load(url)
+                        Glide
+                            .with(holder.itemView.context)
+                            .load(url)
                             .apply(RequestOptions().circleCrop())
                             .into(view.commentviewitem_imageview_profile)
                     }
