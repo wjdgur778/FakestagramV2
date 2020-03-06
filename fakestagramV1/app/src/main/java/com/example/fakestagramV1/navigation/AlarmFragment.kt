@@ -65,16 +65,16 @@ class AlarmFragment : Fragment() {
             FirebaseFirestore.getInstance().collection("profileImages")
                 .document(alarmDTOList[position].uid!!).get().addOnCompleteListener {
 
-                if (it.isSuccessful) {
-                    var url = it.result!!["image"]
-                    Glide
-                        .with(view.context)
-                        .load(url)
-                        .error(R.drawable.ic_home)
-                        .apply(RequestOptions().circleCrop())
-                        .into(view.commentviewitem_imageview_profile)
+                    if (it.isSuccessful) {
+                        var url = it.result!!["image"]
+                        Glide
+                            .with(view.context)
+                            .load(url)
+                            .error(R.drawable.ic_home)
+                            .apply(RequestOptions().circleCrop())
+                            .into(view.commentviewitem_imageview_profile)
+                    }
                 }
-            }
             when (alarmDTOList[position].kind) {
                 0 -> {
                     var str_0 =

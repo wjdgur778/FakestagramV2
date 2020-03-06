@@ -3,10 +3,8 @@ package com.example.fakestagramV1.navigation
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import androidx.work.Data
+import androidx.appcompat.app.AppCompatActivity
 import com.example.fakestagramV1.R
 import com.example.fakestagramV1.navigation.model.ContentDTO
 import com.google.firebase.auth.FirebaseAuth
@@ -15,7 +13,6 @@ import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_add_photo.*
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.Date
 
 class AddPhotoActivity : AppCompatActivity() {
     var PICK_IMAGE_FROM_ALBUM = 0
@@ -63,7 +60,8 @@ class AddPhotoActivity : AppCompatActivity() {
 
         //Promise Method
         storageRef?.putFile(photoUri!!)?.continueWithTask {
-            return@continueWithTask storageRef.downloadUrl}?.addOnSuccessListener { uri ->
+            return@continueWithTask storageRef.downloadUrl
+        }?.addOnSuccessListener { uri ->
             var contentDTO = ContentDTO()
 
             //Insert downloadUrl of image
@@ -76,7 +74,7 @@ class AddPhotoActivity : AppCompatActivity() {
             contentDTO.userId = auth?.currentUser?.email
 
             //Insert explain of content
-                contentDTO.explain = addphoto_edit_explain.text.toString()
+            contentDTO.explain = addphoto_edit_explain.text.toString()
 
             //Insert timestamp
             contentDTO.timestamp = System.currentTimeMillis()
@@ -89,29 +87,29 @@ class AddPhotoActivity : AppCompatActivity() {
     }
 }
 
-      /*  //Callback Method
-        storageRef?.putFile(photoUri!!)?.addOnSuccessListener {
-            storageRef.downloadUrl.addOnSuccessListener {uri ->
-                var contentDTO = ContentDTO()
+/*  //Callback Method
+  storageRef?.putFile(photoUri!!)?.addOnSuccessListener {
+      storageRef.downloadUrl.addOnSuccessListener {uri ->
+          var contentDTO = ContentDTO()
 
-                //Insert downloadUrl of image
-                contentDTO.imageUrl = uri.toString()
+          //Insert downloadUrl of image
+          contentDTO.imageUrl = uri.toString()
 
-                //Insert uid of user
-                contentDTO.uid = auth?.currentUser?.uid
+          //Insert uid of user
+          contentDTO.uid = auth?.currentUser?.uid
 
-                //Insert userId
-                contentDTO.userId = auth?.currentUser?.email
+          //Insert userId
+          contentDTO.userId = auth?.currentUser?.email
 
-                //Insert explain of content
-                contentDTO.explain = addphoto_edit_explain.text.toString()
+          //Insert explain of content
+          contentDTO.explain = addphoto_edit_explain.text.toString()
 
-                //Insert timestamp
-                contentDTO.timestamp = System.currentTimeMillis()
+          //Insert timestamp
+          contentDTO.timestamp = System.currentTimeMillis()
 
-                firestore?.collection("images")?.document()?.set(contentDTO)
+          firestore?.collection("images")?.document()?.set(contentDTO)
 
-                setResult(Activity.RESULT_OK)
-                finish()
-            }
+          setResult(Activity.RESULT_OK)
+          finish()
+      }
 */

@@ -89,8 +89,7 @@ class UserFragment : Fragment() {
     }
 
 
-
-//여기 고치기
+    //여기 고치기
     fun getFollowerAndFollowing() {
         firestore?.collection("users")?.document(uid!!)
             ?.addSnapshotListener { documentSnapshot, firebaseFirestoreException ->
@@ -115,9 +114,9 @@ class UserFragment : Fragment() {
                         fragmentView?.account_btn_follow_signout?.text = getString(R.string.follow)
                         if (uid != currentUserUid) {
                             fragmentView?.account_btn_follow_signout?.background?.colorFilter = null
-                        }
-                        else{
-                            fragmentView?.account_btn_follow_signout?.text = getString(R.string.signout)
+                        } else {
+                            fragmentView?.account_btn_follow_signout?.text =
+                                getString(R.string.signout)
                         }
                     }
                 }
