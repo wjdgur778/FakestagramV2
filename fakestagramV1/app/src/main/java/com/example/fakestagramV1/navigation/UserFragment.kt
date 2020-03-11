@@ -94,7 +94,7 @@ class UserFragment : Fragment() {
         firestore?.collection("users")?.document(uid!!)
             ?.addSnapshotListener { documentSnapshot, firebaseFirestoreException ->
                 if (documentSnapshot == null) return@addSnapshotListener
-                val followDTO = documentSnapshot.toObject(FollowDTO::class.java)
+                val followDTO = documentSnapshot?.toObject(FollowDTO::class.java)
                 if (followDTO?.followingCount != null) {
                     fragmentView?.account_tv_following_count?.text =
                         followDTO.followingCount.toString()
@@ -105,18 +105,18 @@ class UserFragment : Fragment() {
 
                     if (followDTO.followers.containsKey(currentUserUid!!)) {
                         fragmentView?.account_btn_follow_signout?.text =
-                            getString(R.string.follow_cancel)
+                            activity?.getString(R.string.follow_cancel)
                         fragmentView?.account_btn_follow_signout?.background?.setColorFilter(
                             ContextCompat.getColor(activity!!, R.color.colorLightGray),
                             PorterDuff.Mode.MULTIPLY
                         )
                     } else {
-                        fragmentView?.account_btn_follow_signout?.text = getString(R.string.follow)
+                        fragmentView?.account_btn_follow_signout?.text = activity?.getString(R.string.follow)
                         if (uid != currentUserUid) {
                             fragmentView?.account_btn_follow_signout?.background?.colorFilter = null
                         } else {
                             fragmentView?.account_btn_follow_signout?.text =
-                                getString(R.string.signout)
+                                activity?.getString(R.string.signout)
                         }
                     }
                 }
@@ -139,11 +139,11 @@ class UserFragment : Fragment() {
 
             if (followDTO.followings.containsKey(uid)) {
                 //It remove following third person when a third person follow me
-                followDTO.followingCount = followDTO.followingCount - 1
+                followDTO.followingCount = followDTO?.followingCount - 1
                 followDTO.followers.remove(uid)
             } else {
                 //It add following third person when a third person do not follow me
-                followDTO.followingCount = followDTO.followingCount + 1
+                followDTO.followingCount = followDTO?.followingCount + 1
                 followDTO.followers[uid!!] = true
             }
             transaction.set(tsDocFollowing, followDTO)

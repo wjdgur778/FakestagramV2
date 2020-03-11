@@ -18,6 +18,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
+
+
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
         setToolbarDefault()
         when (p0.itemId) {
