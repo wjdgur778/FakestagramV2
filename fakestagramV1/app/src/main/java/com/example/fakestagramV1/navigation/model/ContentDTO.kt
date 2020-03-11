@@ -1,7 +1,5 @@
 package com.example.fakestagramV1.navigation.model
 
-import java.sql.Timestamp
-
 data class ContentDTO(
     var explain: String? = null,
     var imageUrl: String? = null,

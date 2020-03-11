@@ -8,7 +8,7 @@ data class AlarmDTO(
     //0 :like alarm
     //1 :comment alarm
     //2 : follow alarm
-    var kind: Int?= null,
+    var kind: Int? = null,
     var message: String? = null,
     var timestamp: Long? = null
 )

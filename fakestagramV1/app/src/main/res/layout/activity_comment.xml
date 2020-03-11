@@ -21,14 +21,15 @@
         android:layout_height="1dp"
         android:layout_below="@+id/my_toolbar"
         android:orientation="horizontal"></LinearLayout>
-  <androidx.recyclerview.widget.RecyclerView
-      android:layout_marginTop="8dp"
-      android:layout_marginBottom="30dp"
-      android:layout_below="@+id/toolbar_division"
-      android:id="@+id/comment_recyclerview"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content">
-  </androidx.recyclerview.widget.RecyclerView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="30dp"
+        android:layout_below="@+id/toolbar_division"
+        android:id="@+id/comment_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+
     <Button
         android:id="@+id/comment_btn_send"
         android:layout_alignParentRight="true"
@@ -36,13 +37,13 @@
         android:layout_margin="10dp"
         android:text="@string/send"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
+
     <EditText
         android:id="@+id/comment_edit_message"
         android:layout_toLeftOf="@id/comment_btn_send"
         android:layout_below="@+id/comment_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-></EditText>
+        android:layout_margin="10dp"></EditText>
 </RelativeLayout>
